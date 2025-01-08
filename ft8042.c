@@ -337,7 +337,7 @@ static int __i8042_command(unsigned char *param, int command)
 	return 0;
 }
 
-int i8042_command(unsigned char *param, int command)
+static int i8042_command(unsigned char *param, int command)
 {
 	unsigned long flags;
 	int retval;
@@ -561,7 +561,7 @@ static irqreturn_t i8042_interrupt(int irq, void *dev_id)
 						str = last_str;
 						break;
 					}
-					/* fall through - report timeout */
+				fallthrough;
 				case 0xfc:
 				case 0xfd:
 				case 0xfe: dfl = SERIO_TIMEOUT; data = 0xfe; break;
